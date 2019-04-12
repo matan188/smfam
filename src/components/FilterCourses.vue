@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout row>
     <v-flex lg2 mr-2>
       <v-combobox
         label="Category"
