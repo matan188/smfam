@@ -3,10 +3,24 @@
     <v-container>
       <v-layout>
         <v-flex lg3 mr-2>
-          <v-combobox v-model="category" :items="categories"> </v-combobox>
+          <v-combobox
+            label="Category"
+            v-model="category"
+            :items="categories"
+            multiple
+            placeholder="All"
+          >
+          </v-combobox>
         </v-flex>
         <v-flex lg3>
-          <v-combobox v-model="category" :items="categories"> </v-combobox>
+          <v-combobox
+            label="Author"
+            v-model="author"
+            :items="authors"
+            multiple
+            placeholder="All"
+          >
+          </v-combobox>
         </v-flex>
       </v-layout>
     </v-container>
@@ -18,8 +32,10 @@ export default {
 
   data() {
     return {
-      category: 'All',
-      categories: ['All', 'Calisthenics', 'Yoga']
+      category: [],
+      categories: ['Calisthenics', 'Yoga'],
+      author: [],
+      authors: ['Gabo Saturno', 'The SM Team']
     };
   }
 };
