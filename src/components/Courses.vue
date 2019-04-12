@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-layout>
-        <v-flex lg3 mr-2>
+        <v-flex lg2 mr-2>
           <v-combobox
             label="Category"
             v-model="category"
@@ -12,7 +12,7 @@
           >
           </v-combobox>
         </v-flex>
-        <v-flex lg3>
+        <v-flex lg2>
           <v-combobox
             label="Author"
             v-model="author"
@@ -21,6 +21,14 @@
             placeholder="All"
           >
           </v-combobox>
+        </v-flex>
+        <v-spacer></v-spacer>
+        <v-flex lg4>
+          <v-text-field
+            solo
+            placeholder="Find a course"
+            prepend-inner-icon="search"
+          />
         </v-flex>
       </v-layout>
     </v-container>
