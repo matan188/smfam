@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import CoursesView from './views/CoursesView.vue';
-import MyAccount from './views/MyAccount.vue';
 
 Vue.use(Router);
 
@@ -26,7 +25,7 @@ export default new Router({
     {
       path: '/myaccount',
       name: 'myAccount',
-      component: MyAccount
+      component: () => import('./views/MyAccount')
     }
   ]
 });
