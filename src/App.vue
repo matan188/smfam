@@ -6,14 +6,27 @@
         <span class="font-weight-light">MOVEMENT</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn to="/" flat>
-          Home
+      <template v-if="isLoggedIn">
+        <v-toolbar-items>
+          <v-btn to="/" flat class="deep-purple--text">
+            Home
+          </v-btn>
+          <v-btn to="/myaccount" flat class="deep-purple--text">
+            My Account
+          </v-btn>
+        </v-toolbar-items>
+        <v-btn round class="deep-purple--text">
+          Log Out
         </v-btn>
-        <v-btn to="/myaccount" flat>
-          My Account
+      </template>
+      <template v-else>
+        <v-btn round class="deep-purple--text mr-2">
+          Log In
         </v-btn>
-      </v-toolbar-items>
+        <v-btn round color="deep-purple" class="white--text">
+          Sign Up
+        </v-btn>
+      </template>
     </v-toolbar>
 
     <v-content>
@@ -33,7 +46,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'App',
   components: {},
@@ -51,6 +64,10 @@ export default {
 
   methods: {
     ...mapActions(['checkUserState'])
+  },
+
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   }
 };
 </script>
