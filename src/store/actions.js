@@ -1,11 +1,11 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import auth from '@/apis/auth';
 
 console.log('Actions file');
 
 export default {
   checkUserState: ({ commit }) => {
-    const user = firebase.auth().currentUser;
+    const user = auth.checkIsUserLoggedIn();
+
     commit('SET_USER_LOGGED_IN', !!user);
     return user;
   }
