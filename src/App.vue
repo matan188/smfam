@@ -1,34 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Saturno</span>
-        <span class="font-weight-light">MOVEMENT</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <template v-if="isLoggedIn">
-        <v-toolbar-items>
-          <v-btn to="/" flat class="deep-purple--text">
-            Home
-          </v-btn>
-          <v-btn to="/myaccount" flat class="deep-purple--text">
-            My Account
-          </v-btn>
-        </v-toolbar-items>
-        <v-btn round class="deep-purple--text">
-          Log Out
-        </v-btn>
-      </template>
-      <template v-else>
-        <v-btn round class="deep-purple--text mr-2">
-          Log In
-        </v-btn>
-        <v-btn round color="deep-purple" class="white--text">
-          Sign Up
-        </v-btn>
-      </template>
-    </v-toolbar>
-
+    <Toolbar />
     <v-content>
       <v-container v-if="loading" fill-height>
         <v-layout row align-center justify-center>
@@ -46,10 +18,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
+import Toolbar from '@/components/Toolbar';
 export default {
   name: 'App',
-  components: {},
+  components: {
+    Toolbar
+  },
+
   data() {
     return {
       loading: true
@@ -64,10 +40,6 @@ export default {
 
   methods: {
     ...mapActions(['checkUserState'])
-  },
-
-  computed: {
-    ...mapGetters(['isLoggedIn'])
   }
 };
 </script>
