@@ -1,6 +1,6 @@
 <template>
   <v-toolbar app>
-    <v-toolbar-title class="headline text-uppercase">
+    <v-toolbar-title class="headline text-uppercase" @click="navigateHome">
       <span>Saturno</span>
       <span class="font-weight-light">MOVEMENT</span>
     </v-toolbar-title>
@@ -40,7 +40,17 @@ export default {
   },
 
   methods: {
-    ...mapActions(['logoutUser'])
+    ...mapActions(['logoutUser', 'navigateTo']),
+
+    navigateHome() {
+      this.navigateTo({ path: '/' });
+    }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.headline {
+  cursor: pointer;
+}
+</style>

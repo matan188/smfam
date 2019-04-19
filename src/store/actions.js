@@ -38,5 +38,9 @@ export default {
 
   logoutUser: () => {
     return auth.signUserOut();
+  },
+
+  navigateTo: (_, { path }) => {
+    router.push({ path });
   }
 };
