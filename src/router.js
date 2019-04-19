@@ -26,6 +26,11 @@ export default new Router({
       path: '/myaccount',
       name: 'myAccount',
       component: () => import('./views/MyAccount')
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('./views/Signup')
     }
   ]
 });

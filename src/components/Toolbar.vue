@@ -14,7 +14,7 @@
           My Account
         </v-btn>
       </v-toolbar-items>
-      <v-btn round class="deep-purple--text">
+      <v-btn @click="logoutUser" round class="deep-purple--text">
         Log Out
       </v-btn>
     </template>
@@ -22,7 +22,7 @@
       <v-btn round class="deep-purple--text mr-2">
         Login
       </v-btn>
-      <v-btn round color="deep-purple" class="white--text">
+      <v-btn to="/signup" round color="deep-purple" class="white--text">
         Sign Up
       </v-btn>
     </template>
@@ -30,13 +30,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Toolbar',
 
   computed: {
     ...mapGetters(['isLoggedIn'])
+  },
+
+  methods: {
+    ...mapActions(['logoutUser'])
   }
 };
 </script>
