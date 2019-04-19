@@ -1,11 +1,20 @@
-import './firebase';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-function checkIsUserLoggedIn() {
-  return firebase.auth().currentUser;
-}
+const auth = {
+  checkIsUserLoggedIn: () => {
+    return firebase.auth().currentUser;
+  },
 
-export default {
-  checkIsUserLoggedIn
+  signUpUserEmailPassword: (email, password) => {
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(e => {
+        console.error(e);
+        debugger;
+      });
+  }
 };
+
+export default auth;

@@ -1,6 +1,6 @@
-import auth from '@/apis/auth';
+import { auth } from '@/apis';
 
-console.log('Actions file');
+console.log('Actions file', auth);
 
 export default {
   checkUserState: ({ commit }) => {
@@ -8,5 +8,18 @@ export default {
 
     commit('SET_USER_LOGGED_IN', !!user);
     return user;
+  },
+
+  signUpUserEmailPassword: (_, { email, password }) => {
+    return auth
+      .signUpUserEmailPassword(email, password)
+      .then(res => {
+        console.log(res);
+        debugger;
+      })
+      .catch(e => {
+        console.log(e);
+        debugger;
+      });
   }
 };

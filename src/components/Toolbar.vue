@@ -20,7 +20,7 @@
     </template>
     <template v-else>
       <v-btn round class="deep-purple--text mr-2">
-        Log In
+        Login
       </v-btn>
       <v-btn round color="deep-purple" class="white--text">
         Sign Up
