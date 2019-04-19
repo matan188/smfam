@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <Toolbar />
-    <v-content>
-      <v-container v-if="loading" fill-height>
+    <template v-if="loading">
+      <v-container fill-height>
         <v-layout row align-center justify-center>
           <v-progress-circular
             :size="70"
@@ -12,8 +11,13 @@
           ></v-progress-circular>
         </v-layout>
       </v-container>
-      <router-view v-else />
-    </v-content>
+    </template>
+    <template v-else>
+      <Toolbar />
+      <v-content>
+        <router-view />
+      </v-content>
+    </template>
   </v-app>
 </template>
 
