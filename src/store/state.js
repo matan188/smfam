@@ -3,5 +3,6 @@ export default {
   user: {
     displayName: '',
     email: ''
-  }
+  },
+  isUserLoaded: false
 };

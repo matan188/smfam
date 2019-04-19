@@ -8,6 +8,7 @@ export default {
     auth.onUserLoginChange(user => {
       console.log('onuserLoginChange', user);
       commit('SET_USER_LOGGED_IN', !!user);
+      commit('SET_USER_LOADED');
     });
     const user = auth.checkIsUserLoggedIn();
     commit('SET_USER_LOGGED_IN', !!user);
@@ -32,7 +33,7 @@ export default {
   signupUser: ({ dispatch }, { email, password }) => {
     dispatch('signUpUserEmailPassword', { email, password }).then(() => {
       debugger;
-      router.push({ path: 'home' });
+      router.push({ path: '/' });
     });
   },
 

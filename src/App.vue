@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Toolbar from '@/components/Toolbar';
 export default {
   name: 'App',
@@ -31,19 +31,23 @@ export default {
   },
 
   data() {
-    return {
-      loading: true
-    };
+    return {};
   },
 
   async created() {
     await this.checkUserState();
-
-    this.loading = false;
   },
 
   methods: {
     ...mapActions(['checkUserState'])
+  },
+
+  computed: {
+    ...mapGetters(['isUserLoaded']),
+
+    loading() {
+      return !this.isUserLoaded;
+    }
   }
 };
 </script>
