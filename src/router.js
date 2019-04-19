@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import CoursesView from './views/CoursesView.vue';
 
 Vue.use(Router);
 
@@ -11,7 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: CoursesView
+      component: () => import('./views/Home')
+    },
+    {
+      path: '/courses',
+      name: 'courses',
+      component: () => import('./views/CoursesView')
     },
     {
       path: '/about',

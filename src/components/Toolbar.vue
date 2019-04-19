@@ -7,8 +7,8 @@
     <v-spacer></v-spacer>
     <template v-if="isLoggedIn">
       <v-toolbar-items>
-        <v-btn to="/" flat class="deep-purple--text">
-          Home
+        <v-btn to="/courses" flat class="deep-purple--text">
+          My Courses
         </v-btn>
         <v-btn to="/myaccount" flat class="deep-purple--text">
           My Account

@@ -20,8 +20,7 @@ export default {
       .signUpUserEmailPassword(email, password)
       .then(res => {
         state.isLoggedIn = true;
-        console.log(res);
-        debugger;
+        console.log('signed up user', res);
       })
       .catch(err => {
         console.log(err);
@@ -32,8 +31,7 @@ export default {
 
   signupUser: ({ dispatch }, { email, password }) => {
     dispatch('signUpUserEmailPassword', { email, password }).then(() => {
-      debugger;
-      router.push({ path: '/' });
+      router.push({ name: 'courses' });
     });
   },
 
