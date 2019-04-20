@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import auth from '@/apis/auth';
+import store from '@/store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -13,9 +15,28 @@ export default new Router({
       component: () => import('./views/Home')
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Login'),
+      meta: {
+        guestOnly: true
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./views/Register'),
+      meta: {
+        guestOnly: true
+      }
+    },
+    {
       path: '/courses',
       name: 'courses',
-      component: () => import('./views/CoursesView')
+      component: () => import('./views/CoursesView'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/about',
@@ -30,11 +51,33 @@ export default new Router({
       path: '/myaccount',
       name: 'myAccount',
       component: () => import('./views/MyAccount')
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: () => import('./views/Signup')
     }
   ]
 });
+
+router.beforeEach(async (to, from, next) => {
+  if (!store.getters.isUserLoaded) {
+    await auth.checkUserLogin();
+  }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!auth.checkIsUserLoggedIn()) {
+      next({
+        name: 'login',
+        params: {
+          nextUrl: to.fullPath
+        }
+      });
+    } else {
+      next();
+    }
+  } else if (to.matched.some(record => record.meta.guestOnly)) {
+    if (auth.checkIsUserLoggedIn()) {
+      next({
+        name: 'courses'
+      });
+    }
+  }
+  return next();
+});
+
+export default router;

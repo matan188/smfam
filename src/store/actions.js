@@ -1,8 +1,6 @@
 import router from '@/router';
 import { auth } from '@/apis';
 
-console.log('Actions file');
-
 export default {
   checkUserState: ({ commit }) => {
     auth.onUserLoginChange(user => {
@@ -10,14 +8,11 @@ export default {
       commit('SET_USER_LOGGED_IN', !!user);
       commit('SET_USER_LOADED');
     });
-    const user = auth.checkIsUserLoggedIn();
-    commit('SET_USER_LOGGED_IN', !!user);
-    return user;
   },
 
-  signUpUserEmailPassword: ({ state }, { email, password }) => {
+  registerUserEmailPassword: ({ state }, { email, password }) => {
     return auth
-      .signUpUserEmailPassword(email, password)
+      .registerUserEmailPassword(email, password)
       .then(res => {
         state.isLoggedIn = true;
         console.log('signed up user', res);
@@ -29,14 +24,34 @@ export default {
       });
   },
 
-  signupUser: ({ dispatch }, { email, password }) => {
-    dispatch('signUpUserEmailPassword', { email, password }).then(() => {
+  registerUser: ({ dispatch }, { email, password }) => {
+    dispatch('registerUserEmailPassword', { email, password }).then(() => {
       router.push({ name: 'courses' });
     });
   },
 
-  logoutUser: () => {
-    return auth.signUserOut();
+  logoutUser: async () => {
+    await auth.signUserOut();
+    router.push({ name: 'home' });
+  },
+
+  login: async ({ dispatch }, { email, password }) => {
+    const user = await auth.signUserIn(email, password);
+
+    if (router.currentRoute.params.nextUrl) {
+      router.push(router.currentRoute.params.nextUrl);
+    } else {
+      router.push({ name: 'courses' });
+    }
+    dispatch('setUserDetails', user);
+    return user;
+  },
+
+  setUserDetails: ({ commit }, user) => {
+    commit('SET_USER_DETAILS', {
+      displayName: user.displayName,
+      email: user.email
+    });
   },
 
   navigateTo: (_, { path }) => {

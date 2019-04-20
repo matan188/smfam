@@ -9,7 +9,7 @@ const auth = {
     return user;
   },
 
-  signUpUserEmailPassword: (email, password) => {
+  registerUserEmailPassword: (email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   },
 
@@ -19,13 +19,25 @@ const auth = {
     });
   },
 
+  checkUserLogin: () => {
+    return new Promise(resolve => {
+      firebase.auth().onAuthStateChanged(function(user) {
+        resolve(user);
+      });
+    });
+  },
+
   signUserOut: () => {
-    firebase
+    return firebase
       .auth()
       .signOut()
       .catch(err => {
         console.error('Signout failed', err);
       });
+  },
+
+  signUserIn: (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 };
 

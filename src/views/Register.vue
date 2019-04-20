@@ -31,6 +31,8 @@
 import { mapActions } from 'vuex';
 
 export default {
+  name: 'Register',
+
   data() {
     return {
       email: '',
@@ -39,10 +41,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(['signupUser']),
+    ...mapActions(['registerUser']),
 
     submit() {
-      this.signupUser({
+      this.registerUser({
         email: this.email,
         password: this.password
       })

@@ -19,10 +19,10 @@
       </v-btn>
     </template>
     <template v-else>
-      <v-btn round class="deep-purple--text mr-2">
+      <v-btn to="/login" round class="deep-purple--text mr-2">
         Login
       </v-btn>
-      <v-btn to="/signup" round color="deep-purple" class="white--text">
+      <v-btn to="/register" round color="deep-purple" class="white--text">
         Sign Up
       </v-btn>
     </template>

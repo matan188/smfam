@@ -34,8 +34,8 @@ export default {
     return {};
   },
 
-  async created() {
-    await this.checkUserState();
+  created() {
+    this.checkUserState();
   },
 
   methods: {
