@@ -51,6 +51,10 @@ const router = new Router({
       path: '/myaccount',
       name: 'myAccount',
       component: () => import('./views/MyAccount')
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 });
