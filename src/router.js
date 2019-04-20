@@ -59,8 +59,9 @@ router.beforeEach(async (to, from, next) => {
   if (!store.getters.isUserLoaded) {
     await auth.checkUserLogin();
   }
+  const isLoggedIn = store.getters.isLoggedIn;
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!auth.checkIsUserLoggedIn()) {
+    if (!isLoggedIn) {
       next({
         name: 'login',
         params: {
@@ -71,7 +72,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else if (to.matched.some(record => record.meta.guestOnly)) {
-    if (auth.checkIsUserLoggedIn()) {
+    if (isLoggedIn) {
       next({
         name: 'courses'
       });
