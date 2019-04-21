@@ -20,7 +20,7 @@
                 Gabo Saturno
               </v-flex>
               <v-flex md2 offset-md5>
-                <div>30%</div>
+                <div>{{ course.progress }}%</div>
               </v-flex>
             </v-layout>
           </v-card-title>
