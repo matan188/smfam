@@ -1,5 +1,5 @@
 import router from '@/router';
-import { auth } from '@/apis';
+import { auth, db } from '@/apis';
 
 export default {
   checkUserState: ({ commit }) => {
@@ -56,5 +56,9 @@ export default {
 
   navigateTo: (_, { path }) => {
     router.push({ path });
+  },
+
+  getAllCourses: () => {
+    return db.getAllCourses();
   }
 };

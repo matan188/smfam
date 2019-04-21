@@ -1,4 +1,5 @@
 import './firebase';
 import auth from '@/apis/auth';
+import db from '@/apis/db';
 
-export { auth };
+export { auth, db };
