@@ -4,5 +4,6 @@ export default {
     displayName: '',
     email: ''
   },
-  isUserLoaded: false
+  isUserLoaded: false,
+  courses: []
 };

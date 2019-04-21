@@ -58,7 +58,9 @@ export default {
     router.push({ path });
   },
 
-  getAllCourses: () => {
-    return db.getAllCourses();
+  getAllCourses: async ({ commit }) => {
+    const courses = await db.getAllCourses();
+    commit('SET_COURSES', courses);
+    return courses;
   }
 };

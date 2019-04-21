@@ -9,7 +9,14 @@ class DB {
       .collection('courses')
       .get()
       .then(query => {
-        const courses = query.docs.map(doc => doc.data());
+        console.log('docs', query.docs);
+
+        const courses = query.docs.map(doc => {
+          return {
+            id: doc.id,
+            ...doc.data()
+          };
+        });
         console.log('courses', courses);
         return courses;
       });
