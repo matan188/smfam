@@ -32,7 +32,7 @@ const router = new Router({
     {
       path: '/courses',
       name: 'courses',
-      component: () => import('./views/CoursesView'),
+      component: () => import('./views/Courses'),
       meta: {
         requiresAuth: true
       }
