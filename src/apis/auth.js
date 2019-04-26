@@ -2,13 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const auth = {
-  checkIsUserLoggedIn: () => {
-    const user = firebase.auth().currentUser;
-    console.log('is logged in ', user);
-
-    return user;
-  },
-
   registerUserEmailPassword: (email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   },

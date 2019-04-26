@@ -2,12 +2,13 @@ import router from '@/router';
 import { auth, db } from '@/apis';
 
 export default {
-  checkUserState: ({ commit }) => {
-    auth.onUserLoginChange(user => {
-      console.log('onuserLoginChange', user);
-      commit('SET_USER_LOGGED_IN', !!user);
-      commit('SET_USER_LOADED');
-    });
+  loadUser: async ({ commit, dispatch }) => {
+    const user = await auth.checkUserLogin();
+    commit('SET_USER_LOGGED_IN', !!user);
+    commit('SET_USER_LOADED');
+    await dispatch('setUserDetails', user);
+    console.log('onuserLoginChange', user);
+    return user;
   },
 
   registerUserEmailPassword: ({ state }, { email, password }) => {

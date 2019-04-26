@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import auth from '@/apis/auth';
 import store from '@/store';
 
 Vue.use(Router);
@@ -61,7 +60,7 @@ const router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   if (!store.getters.isUserLoaded) {
-    await auth.checkUserLogin();
+    await store.dispatch('loadUser');
   }
   const isLoggedIn = store.getters.isLoggedIn;
   if (to.matched.some(record => record.meta.requiresAuth)) {
