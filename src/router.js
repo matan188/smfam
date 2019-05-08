@@ -38,6 +38,14 @@ const router = new Router({
       }
     },
     {
+      path: '/courses/:courseId',
+      name: 'lesson',
+      component: () => import('./views/Lesson'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

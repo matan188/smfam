@@ -2,7 +2,7 @@
   <v-container class="grid-list-xl px-0" fluid>
     <v-layout row wrap>
       <v-flex lg4 v-for="course in allCourses" :key="course.id">
-        <v-card hover>
+        <v-card hover :to="`courses/${course.id}`">
           <v-img :src="course.img_location" height="200px"></v-img>
           <v-card-title primary-title>
             <div class="headline">{{ course.name }}</div>
