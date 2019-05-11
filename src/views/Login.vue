@@ -12,6 +12,7 @@
               required
             ></v-text-field>
             <v-text-field
+              @keyup.enter="doLogin"
               v-model="password"
               :counter="10"
               label="Password"
