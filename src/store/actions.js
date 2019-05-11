@@ -6,9 +6,7 @@ export default {
     const user = await auth.checkUserLogin();
     commit('SET_USER_LOGGED_IN', !!user);
     commit('SET_USER_LOADED');
-    if (user) {
-      await dispatch('setUserDetails', user);
-    }
+    await dispatch('setUserDetails', user);
     console.log('onuserLoginChange', user);
     return user;
   },
@@ -51,10 +49,12 @@ export default {
   },
 
   setUserDetails: ({ commit }, user) => {
-    commit('SET_USER_DETAILS', {
-      displayName: user.displayName,
-      email: user.email
-    });
+    if (user) {
+      commit('SET_USER_DETAILS', {
+        displayName: user.displayName,
+        email: user.email
+      });
+    }
   },
 
   navigateTo: (_, { path }) => {
