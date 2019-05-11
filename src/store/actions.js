@@ -4,7 +4,6 @@ import { auth, db } from '@/apis';
 export default {
   loadUser: async ({ commit, dispatch }) => {
     const user = await auth.checkUserLogin();
-    commit('SET_USER_LOGGED_IN', !!user);
     commit('SET_USER_LOADED');
     await dispatch('setUserDetails', user);
     console.log('onuserLoginChange', user);
@@ -31,8 +30,9 @@ export default {
     });
   },
 
-  logoutUser: async () => {
+  logoutUser: async ({ commit }) => {
     await auth.signUserOut();
+    commit('SET_USER_LOGGED_IN', false);
     router.push({ name: 'home' });
   },
 
@@ -50,6 +50,7 @@ export default {
 
   setUserDetails: ({ commit }, user) => {
     if (user) {
+      commit('SET_USER_LOGGED_IN', !!user);
       commit('SET_USER_DETAILS', {
         displayName: user.displayName,
         email: user.email
