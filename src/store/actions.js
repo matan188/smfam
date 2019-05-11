@@ -6,7 +6,9 @@ export default {
     const user = await auth.checkUserLogin();
     commit('SET_USER_LOGGED_IN', !!user);
     commit('SET_USER_LOADED');
-    await dispatch('setUserDetails', user);
+    if (user) {
+      await dispatch('setUserDetails', user);
+    }
     console.log('onuserLoginChange', user);
     return user;
   },
