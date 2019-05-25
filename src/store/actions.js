@@ -2,6 +2,10 @@ import router from '@/router';
 import { auth, db } from '@/apis';
 
 export default {
+  /********/
+  /* USER */
+  /********/
+
   loadUser: async ({ commit, dispatch }) => {
     const user = await auth.checkUserLogin();
     commit('SET_USER_LOADED');
@@ -62,11 +66,23 @@ export default {
     router.push({ path });
   },
 
+  /***********/
+  /* COURSES */
+  /***********/
+
   getAllCourses: async ({ getters, commit }) => {
     if (getters.allCourses.length === 0) {
       const courses = await db.getAllCourses();
       commit('SET_COURSES', courses);
       return courses;
+    }
+  },
+
+  getCatalog: async ({ getters, commit }) => {
+    if (Object.keys(getters.allCourses).length === 0) {
+      const catalog = await db.getCatalog();
+      commit('SET_CATALOG', catalog);
+      return catalog;
     }
   }
 };

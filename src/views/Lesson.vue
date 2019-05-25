@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h1>Lesson</h1>
-    <div>{{ id }}</div>
+  <div class="lesson">
+    <LessonsNav />
   </div>
 </template>
 <script>
+import LessonsNav from '@/components/LessonsNav';
 export default {
   name: 'lesson',
+  components: {
+    LessonsNav
+  },
 
   data() {
     return {
@@ -15,3 +18,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.lesson {
+  height: 100%;
+}
+</style>

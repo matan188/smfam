@@ -39,11 +39,12 @@ export default {
   },
 
   created() {
-    this.getAllCourses();
+    // this.getAllCourses();
+    this.getCatalog();
   },
 
   methods: {
-    ...mapActions(['getAllCourses'])
+    ...mapActions(['getAllCourses', 'getCatalog'])
   },
 
   computed: {

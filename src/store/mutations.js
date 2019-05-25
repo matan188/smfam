@@ -6,10 +6,15 @@ export default {
 
   SET_USER_LOADED: state => (state.isUserLoaded = true),
 
-  SET_COURSES: (state, courses) => Vue.set(state, 'courses', courses),
-
   SET_USER_DETAILS: (state, { email, displayName }) => {
     state.user.email = email;
     state.user.displayName = displayName;
-  }
+  },
+
+  /***********/
+  /* COURSES */
+  /***********/
+  SET_COURSES: (state, courses) => Vue.set(state, 'courses', courses),
+
+  SET_CATALOG: (state, courses) => Vue.set(state, 'courses', courses)
 };
